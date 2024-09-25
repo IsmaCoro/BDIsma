@@ -56,9 +56,11 @@ def Ver_Empleados_Registrados():
     cur.execute("SELECT * FROM templeados")
     empleados = cur.fetchall()
     usuario = request.form['modo']
+    sucursalesT = get_sucursales(mysql)
+    coloniasT = get_colonias(mysql)
     if usuario == "Admin":
         modo = usuario
-        return render_template("VerEmpleadosRegistrados.html", empleados=empleados, modo=modo)
+        return render_template("VerEmpleadosRegistrados.html", empleados=empleados, modo=modo, sucursales = sucursalesT, colonias = coloniasT)
 
     else:
         modo = usuario
@@ -87,7 +89,9 @@ def modificar_empleado_route(id):
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM templeados WHERE ID = %s', (id,))
     empleado = cur.fetchone()
-    return render_template('EditarEmpleado.html', empleado=empleado)
+    sucursalesT = get_sucursales(mysql)
+    coloniasT = get_colonias(mysql)
+    return render_template('EditarEmpleado.html', empleado=empleado, sucursales = sucursalesT, colonias = coloniasT)
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)

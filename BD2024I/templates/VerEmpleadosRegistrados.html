@@ -20,6 +20,8 @@
                     <th>NSS</th>
                     <th>Fecha de Nacimiento</th>
                     <th>Fecha de Ingreso</th>
+                    <th>Sucursal</th>
+                    <th>Colonia</th>
                     {% if modo == 'Admin'%}
                     <th colspan="2">Acciones</th>
                     {% endif %}
@@ -34,6 +36,16 @@
                     <td>{{ empleado[3] }}</td>
                     <td>{{ empleado[4] }}</td>
                     <td>{{ empleado[5] }}</td>
+                    <td>
+                      {% for sucursal in sucursales %}
+                        {% if sucursal.ID == empleado[6] %}{{ sucursal.Nombre }}{% endif %}
+                      {% endfor %}
+                    </td>
+                    <td>
+                      {% for colonia in colonias %}
+                        {% if colonia.ID == empleado[7] %}{{ colonia.Colonia }}{% endif %}
+                      {% endfor %}
+                    </td>
                     {% if modo == 'Admin'%}
                     <td><a href="/Eliminar_Empleado/{{ empleado[0] }}" class="btn-submit">Eliminar</a></td>
                     <td><a href="/Modificar_Empleado/{{ empleado[0] }}" class="btn-submit">Modificar</a></td>

@@ -12,6 +12,18 @@
         <h1>Modificar Empleado</h1>
         <form action="/Modificar_Empleado/{{ empleado[0] }}" method="POST" class="contact-form">
             <div class="input-group">
+              <label for="sucursal">Sucursal</label>
+              <select id="sucursal" name="sucursal_ID">
+                {% for sucursal in sucursales %}
+                  <option value="{{ sucursal.ID }}"
+                          {% if sucursal.ID == empleado[6] %}selected{% endif %}>
+                    {{ sucursal.Nombre }}
+                  </option>
+                {% endfor %}
+              </select>
+              <br>
+            </div>
+            <div class="input-group">
                 <label for="Nombre">Nombre</label>
                 <input type="text" id="Nombre" name="Nombre" value="{{ empleado[1] }}" required>
             </div>
@@ -24,12 +36,24 @@
                 <input type="text" id="NSS" name="NSS" value="{{ empleado[3] }}" required>
             </div>
             <div class="input-group">
+              <label for="colonia">Colonia</label>
+              <select id="colonia" name="sucursal_ID">
+                {% for colonia in colonias %}
+                  <option value="{{ colonia.ID }}"
+                          {% if colonia.ID == empleado[7] %}selected{% endif %}>
+                    {{ colonia.Colonia }}
+                  </option>
+                {% endfor %}
+              </select>
+              <br>
+            </div>
+            <div class="input-group">
                 <label for="FechaNacimiento">Fecha de Nacimiento</label>
-                <input type="text" id="FechaNacimiento" name="FechaNacimiento" value="{{ empleado[4] }}" required>
+                <input type="datetime" id="FechaNacimiento" name="FechaNacimiento" value="{{ empleado[4] }}" required>
             </div>
             <div class="input-group">
                 <label for="FechaIngreso">Fecha de Ingreso</label>
-                <input type="date" id="FechaIngreso" name="FechaIngreso" value="{{ empleado[5] }}" required>
+                <input type="datetime" id="FechaIngreso" name="FechaIngreso" value="{{ empleado[5] }}" required>
             </div>
 
             <button href="/VerEmpleadosRegistrados" type="submit" class="btn-submit">Aceptar Cambios</button>
