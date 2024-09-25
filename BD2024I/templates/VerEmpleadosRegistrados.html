@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Empleados Registrados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Index.css') }}">
+</head>
+<body>
+
+    <div class="tablecontainer">
+        <h1>Lista de Empleados Registrados</h1>
+        <!--<a href="/Modificar_Empleado/<id>" method='GET' class="btn-submit">Modificar</a>-->
+        <table class="contact-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>RFC</th>
+                    <th>NSS</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Fecha de Ingreso</th>
+                    {% if modo == 'Admin'%}
+                    <th colspan="2">Acciones</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for empleado in empleados %}
+                <tr>
+                    <td>{{ empleado[0] }}</td>
+                    <td>{{ empleado[1] }}</td>
+                    <td>{{ empleado[2] }}</td>
+                    <td>{{ empleado[3] }}</td>
+                    <td>{{ empleado[4] }}</td>
+                    <td>{{ empleado[5] }}</td>
+                    {% if modo == 'Admin'%}
+                    <td><a href="/Eliminar_Empleado/{{ empleado[0] }}" class="btn-submit">Eliminar</a></td>
+                    <td><a href="/Modificar_Empleado/{{ empleado[0] }}" class="btn-submit">Modificar</a></td>
+                    {% else %}{% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!--########################################## Barra Superior ##########################################-->
+    <div class="top-container">
+
+      <div class="title-container">
+        <h1>EuphorbiaST</h1>
+      </div>
+
+<div class="top-btn">
+      <a href="/" class="btn">Inicio</a>
+</div>
+
+  <!-- lOGICA PARA SABER SI ES ADMIN O USUARIO -->
+  {% if modo == 'User'%}
+  <form action="/VerEmpleadosRegistrados" method="post">
+      <input type="hidden" name="modo" value="User">
+      <div class="top-btn">
+      <input type="submit" value="Ver Empleados Registrados" class="btn">
+      </div>
+  </form>
+  {% else %}
+  <form action="/VerEmpleadosRegistrados" method="post">
+      <input type="hidden" name="modo" value="Admin">
+      <div class="top-btn">
+      <input type="submit" value="Empleados" class="btn">
+      </div>
+  </form>
+  {% endif %}
+
+  <div class="top-btn">
+        <a href="/Index" class="btn">Entrada</a>
+  </div>
+
+  </div>
+    <!--########################################## Barra Superior ##########################################-->
+
+</body>
+</html>

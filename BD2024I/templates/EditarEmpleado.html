@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Empleado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Index.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Modificar Empleado</h1>
+        <form action="/Modificar_Empleado/{{ empleado[0] }}" method="POST" class="contact-form">
+            <div class="input-group">
+                <label for="Nombre">Nombre</label>
+                <input type="text" id="Nombre" name="Nombre" value="{{ empleado[1] }}" required>
+            </div>
+            <div class="input-group">
+                <label for="RFC">RFC</label>
+                <input type="text" id="RFC" name="RFC" value="{{ empleado[2] }}" required>
+            </div>
+            <div class="input-group">
+                <label for="NSS">NSS</label>
+                <input type="text" id="NSS" name="NSS" value="{{ empleado[3] }}" required>
+            </div>
+            <div class="input-group">
+                <label for="FechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" id="FechaNacimiento" name="FechaNacimiento" value="{{ empleado[4] }}" required>
+            </div>
+            <div class="input-group">
+                <label for="FechaIngreso">Fecha de Ingreso</label>
+                <input type="date" id="FechaIngreso" name="FechaIngreso" value="{{ empleado[5] }}" required>
+            </div>
+
+            <button href="/VerEmpleadosRegistrados" type="submit" class="btn-submit">Aceptar Cambios</button>
+        </form>
+    </div>
+
+    <!--########################################## Barra Superior ##########################################-->
+    <div class="top-container">
+
+      <div class="title-container">
+        <h1>EuphorbiaST</h1>
+      </div>
+
+<div class="top-btn">
+      <a href="/" class="btn">Inicio</a>
+</div>
+
+  <!-- lOGICA PARA SABER SI ES ADMIN O USUARIO -->
+  {% if modo == 'User'%}
+  <form action="/VerEmpleadosRegistrados" method="post">
+      <input type="hidden" name="modo" value="User">
+      <div class="top-btn">
+      <input type="submit" value="Ver Empleados Registrados" class="btn">
+      </div>
+  </form>
+  {% else %}
+  <form action="/VerEmpleadosRegistrados" method="post">
+      <input type="hidden" name="modo" value="Admin">
+      <div class="top-btn">
+      <input type="submit" value="Empleados" class="btn">
+      </div>
+  </form>
+  {% endif %}
+
+  <div class="top-btn">
+        <a href="/Index" class="btn">Entrada</a>
+  </div>
+
+  </div>
+    <!--########################################## Barra Superior ##########################################-->
+</body>
+</html>
