@@ -24,6 +24,11 @@
 
         <h1>Agregar Empleado</h1>
         <form class="contact-form" method="POST" action="/Agregar_Empleado">
+          <div class="input-group">
+            <label for="sucursal">Sucursal</label>
+            <select id="sucursal" name="sucursal_ID">{% for sucursal in sucursales %}
+              <option value="{{ sucursal.ID }}">{{ sucursal.Nombre }}</option>{% endfor %}</select><br>
+          </div>
             <div class="input-group">
                 <label for="Nombre">Nombre</label>
                 <input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre" required>
@@ -37,6 +42,11 @@
                 <input type="text" id="NSS" name="NSS" placeholder="Ingrese su NSS" required>
             </div>
             <div class="input-group">
+              <label for="colonia">Colonia</label>
+              <select id="colonia" name="colonia_ID">{% for colonia in colonias %}
+                <option value="{{ colonia.ID }}">{{ colonia.Colonia }}</option>{% endfor %}</select><br>
+            </div>
+            <div class="input-group">
                 <label for="FechaNacimiento">Fecha de Nacimiento</label>
                 <input type="date" id="FechaNacimiento" name="FechaNacimiento" required>
             </div>
@@ -44,8 +54,6 @@
                 <label for="FechaIngreso">Fecha de Ingreso</label>
                 <input type="date" id="FechaIngreso" name="FechaIngreso" required>
             </div>
-
-            <input type="hidden" name="sucursal" value="1">
 
             <input type="hidden" name="colonia" value="2">
 

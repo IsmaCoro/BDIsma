@@ -3,7 +3,7 @@ from flask import Flask, flash, redirect, render_template, request, url_for
 #agregamos el archivo que tiene la conexion a la base de datos
 from conexionBD import init_db
 #importamos las funciones del archivo models
-from models import get_empleados, agregar_empleado, eliminar_empleado, modificar_empleado
+from models import get_empleados, get_sucursales, get_colonias, agregar_empleado, eliminar_empleado, modificar_empleado
 
 app = Flask(__name__)
 mysql = init_db(app)
@@ -17,13 +17,18 @@ def login():
 @app.route('/login', methods=['POST'])
 def user():
     usuario = request.form['username']
-    return render_template("Index.html", modo=usuario)
+    empleados = get_empleados(mysql)
+    sucursalesT = get_sucursales(mysql)
+    coloniasT = get_colonias(mysql)
+    return render_template("Index.html", modo=usuario, empleados=empleados, sucursales=sucursalesT, colonias = coloniasT)
 
 #para cuando se de click en el boton Entrada
 @app.route('/Index')
 def index():
     empleados = get_empleados(mysql)
-    return render_template('Index.html', empleados=empleados)
+    sucursalesT = get_sucursales(mysql)
+    coloniasT = get_colonias(mysql)
+    return render_template('Index.html', empleados=empleados, sucursales=sucursalesT, colonias = coloniasT)
 
 
 #funcion para el boton que registra a los empleados
@@ -35,8 +40,8 @@ def agregar_empleado_route():
         nss = request.form['NSS']
         fecha_nacimiento = request.form['FechaNacimiento']
         fecha_ingreso = request.form['FechaIngreso']
-        sucursal_id = 1
-        colonia_id = 1
+        sucursal_id = request.form['sucursal_ID']
+        colonia_id = request.form['colonia_ID']
         contactoemergencia_id = 1
 
         #ejecutamos la funcion externa que se encarga de subir los datos a la BD
