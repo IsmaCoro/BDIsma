@@ -293,3 +293,15 @@ input[type="submit"]:hover {
     background-color: #4e0fa6; /* Color de fondo al pasar el cursor */
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2); /* Incrementa la sombra al hacer hover */
 }
+
+select{
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem; /* Ajustado si es necesario */
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: #E1E6F2;
+    color: #000000;
+    transition: background-color 0.3s ease;
+}
