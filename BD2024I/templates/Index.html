@@ -10,7 +10,6 @@
 
 
 
-
     <div class="block-container">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -30,7 +29,7 @@
               <option value="{{ sucursal.ID }}">{{ sucursal.Nombre }}</option>{% endfor %}</select><br>
           </div>
             <div class="input-group">
-                <label for="Nombre">Nombre</label>
+                <label for="Nombre">Nombre{{modo}}</label>
                 <input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre" required>
             </div>
             <div class="input-group">

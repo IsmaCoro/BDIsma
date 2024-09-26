@@ -1,5 +1,5 @@
 #importamos las funciones para el uso del flask
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, url_for, session
 #agregamos el archivo que tiene la conexion a la base de datos
 from conexionBD import init_db
 #importamos las funciones del archivo models
@@ -8,6 +8,7 @@ from models import get_empleados, get_sucursales, get_colonias, agregar_empleado
 app = Flask(__name__)
 mysql = init_db(app)
 
+global privilegios
 #Mostramos la pagina de login
 @app.route('/')
 def login():
@@ -16,20 +17,20 @@ def login():
 #para mostrar la pagina despues del login
 @app.route('/login', methods=['POST'])
 def user():
-    usuario = request.form['username']
-    empleados = get_empleados(mysql)
-    sucursalesT = get_sucursales(mysql)
-    coloniasT = get_colonias(mysql)
-    return render_template("Index.html", modo=usuario, empleados=empleados, sucursales=sucursalesT, colonias = coloniasT)
+    session['privilegios'] = request.form['username']
+    #privilegios = request.form['username']
+    return redirect('/Index')
 
 #para cuando se de click en el boton Entrada
-@app.route('/Index', methods=['POST'])
+@app.route('/Index', methods=['POST', 'GET'])
 def index():
-    modo = request.form['modo']
+    modo = session.get('privilegios')
+    #modo = privilegios
+    #modo = request.form['modo']
     empleados = get_empleados(mysql)
     sucursalesT = get_sucursales(mysql)
     coloniasT = get_colonias(mysql)
-    return render_template('Index.html', empleados=empleados, sucursales=sucursalesT, colonias = coloniasT, modo=modo)
+    return render_template('Index.html', modo = modo, empleados=empleados, sucursales=sucursalesT, colonias = coloniasT)
 
 
 #funcion para el boton que registra a los empleados
@@ -78,6 +79,7 @@ def eliminar_empleado_route(id):
 @app.route('/Modificar_Empleado/<id>', methods=['GET', 'POST'])
 def modificar_empleado_route(id):
     if request.method == 'POST':
+        #usuario = request.form['username']
         nombre = request.form['Nombre']
         rfc = request.form['RFC']
         nss = request.form['NSS']
@@ -85,14 +87,15 @@ def modificar_empleado_route(id):
         fecha_ingreso = request.form['FechaIngreso']
         modificar_empleado(mysql, id, nombre, rfc, nss, fecha_nacimiento, fecha_ingreso)
         flash('El empleado ha sido modificado exitosamente')
-        return redirect(url_for('index'))
+        return redirect('/Index')
 
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM templeados WHERE ID = %s', (id,))
+    modo = session.get('privilegios')
     empleado = cur.fetchone()
     sucursalesT = get_sucursales(mysql)
     coloniasT = get_colonias(mysql)
-    return render_template('EditarEmpleado.html', empleado=empleado, sucursales = sucursalesT, colonias = coloniasT)
+    return render_template('EditarEmpleado.html', modo = modo, empleado=empleado, sucursales = sucursalesT, colonias = coloniasT)
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
