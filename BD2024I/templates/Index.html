@@ -53,10 +53,40 @@
                 <label for="FechaIngreso">Fecha de Ingreso</label>
                 <input type="date" id="FechaIngreso" name="FechaIngreso" required>
             </div>
-
-            <input type="hidden" name="colonia" value="2">
-
-            <input type="hidden" name="contacto" value="3">
+            <div class="input-group">
+                <label for="Telefono">Numero de Telefono</label>
+                <input type="number" id="Telefono" name="Telefono" required>
+            </div>
+            <div class="input-group">
+                <label for="Correo">Correo Electronico</label>
+                <input type="email" id="Correo Electronico" name="Correo" required>
+            </div>
+            <div class="input-group">
+                <label for="Genero">Genero</label>
+                <select name="Genero" id="Genero" disabled="disabled">
+                    <option value="Femenino">Femenino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Otro">Otro</option>
+                </select><br>
+            </div>
+            <div class="input-group">
+                <label for="Tuno">Turno</label>
+                <select name="Tuno" id="Tuno" disabled="disabled">
+                    <option value="Matutino">Matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+                    <option value="Nocturno">Nocturno</option>
+                </select><br>
+            </div>
+            <div class="input-group">
+                <label for="Puesto">Puesto</label>
+                <select name="Puesto" id="Puesto" disabled="disabled">
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </div>
 
             <button type="submit" class="btn-submit">Registrar Empleado</button>
 
@@ -82,6 +112,10 @@
       <input type="submit" value="Empleados" class="btn">
       </div>
   </form>
+  <form action="/Index" class="top-btn" method="post">
+    <input type="hidden" name="modo" value="User">
+    <input type="submit" value="Entrada" class="btn">
+  </form>
   {% else %}
   <form action="/VerEmpleadosRegistrados" method="post">
       <input type="hidden" name="modo" value="User">
@@ -89,11 +123,11 @@
       <input type="submit" value="Empleados" class="btn">
       </div>
   </form>
+  <form action="/Index" class="top-btn" method="post">
+    <input type="hidden" name="modo" value="Admin">
+    <input type="submit" value="Entrada" class="btn">
+  </form>
   {% endif %}
-
-  <div class="top-btn">
-        <a href="/Index" class="btn">Entrada</a>
-  </div>
 
   </div>
     <!--########################################## Barra Superior ##########################################-->
