@@ -55,10 +55,6 @@
                 <input type="date" id="FechaIngreso" name="FechaIngreso" required>
             </div>
 
-            <input type="hidden" name="colonia" value="2">
-
-            <input type="hidden" name="contacto" value="3">
-
             <button type="submit" class="btn-submit">Registrar Empleado</button>
 
         </form>
@@ -83,6 +79,10 @@
       <input type="submit" value="Empleados" class="btn">
       </div>
   </form>
+  <form action="/Index" class="top-btn" method="post">
+    <input type="hidden" name="modo" value="User">
+    <input type="submit" value="Entrada" class="btn">
+  </form>
   {% else %}
   <form action="/VerEmpleadosRegistrados" method="post">
       <input type="hidden" name="modo" value="User">
@@ -90,11 +90,11 @@
       <input type="submit" value="Empleados" class="btn">
       </div>
   </form>
+  <form action="/Index" class="top-btn" method="post">
+    <input type="hidden" name="modo" value="Admin">
+    <input type="submit" value="Entrada" class="btn">
+  </form>
   {% endif %}
-
-  <div class="top-btn">
-        <a href="/Index" class="btn">Entrada</a>
-  </div>
 
   </div>
     <!--########################################## Barra Superior ##########################################-->
