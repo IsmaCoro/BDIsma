@@ -64,7 +64,7 @@ def Ver_Empleados_Registrados():
 
     else:
         modo = usuario
-        return render_template('VerEmpleadosRegistrados.html', empleados=empleados, modo=modo)
+        return render_template('VerEmpleadosRegistrados.html', empleados=empleados, modo=modo, sucursales = sucursalesT, colonias = coloniasT)
 
 #funcion para el boton que esta en la pagina de EditarEmpleado y elimina al empleado
 @app.route('/Eliminar_Empleado/<string:id>')

@@ -22,9 +22,9 @@
                     <th>Fecha de Ingreso</th>
                     <th>Sucursal</th>
                     <th>Colonia</th>
-                    {% if modo == 'Admin'%}
+                    <!--{% if modo == 'Admin'%}
                     <th colspan="2">Acciones</th>
-                    {% endif %}
+                    {% endif %}-->
                 </tr>
             </thead>
             <tbody>
@@ -72,7 +72,7 @@
   <form action="/VerEmpleadosRegistrados" method="post">
       <input type="hidden" name="modo" value="User">
       <div class="top-btn">
-      <input type="submit" value="Ver Empleados Registrados" class="btn">
+      <input type="submit" value="Empleados" class="btn">
       </div>
   </form>
   {% else %}
