@@ -23,12 +23,13 @@ def user():
     return render_template("Index.html", modo=usuario, empleados=empleados, sucursales=sucursalesT, colonias = coloniasT)
 
 #para cuando se de click en el boton Entrada
-@app.route('/Index')
+@app.route('/Index', methods=['POST'])
 def index():
+    modo = request.form['modo']
     empleados = get_empleados(mysql)
     sucursalesT = get_sucursales(mysql)
     coloniasT = get_colonias(mysql)
-    return render_template('Index.html', empleados=empleados, sucursales=sucursalesT, colonias = coloniasT)
+    return render_template('Index.html', empleados=empleados, sucursales=sucursalesT, colonias = coloniasT, modo=modo)
 
 
 #funcion para el boton que registra a los empleados

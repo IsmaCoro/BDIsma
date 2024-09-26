@@ -75,6 +75,10 @@
       <input type="submit" value="Empleados" class="btn">
       </div>
   </form>
+  <form action="/Index" class="top-btn" method="post">
+    <input type="hidden" name="modo" value="User">
+    <input type="submit" value="Entrada" class="btn">
+  </form>
   {% else %}
   <form action="/VerEmpleadosRegistrados" method="post">
       <input type="hidden" name="modo" value="Admin">
@@ -82,11 +86,11 @@
       <input type="submit" value="Empleados" class="btn">
       </div>
   </form>
+  <form action="/Index" class="top-btn" method="post">
+    <input type="hidden" name="modo" value="Admin">
+    <input type="submit" value="Entrada" class="btn">
+  </form>
   {% endif %}
-
-  <div class="top-btn">
-        <a href="/Index" class="btn">Entrada</a>
-  </div>
 
   </div>
     <!--########################################## Barra Superior ##########################################-->
