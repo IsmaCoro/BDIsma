@@ -38,6 +38,42 @@ def get_colonias(mysql):
     colonias = [dict(zip(columns, row)) for row in rows]
     return colonias
 
+#Obtenemos los generos existenes en la BD
+def get_generos(mysql):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM TGeneros')
+    rows = cur.fetchall()
+
+    # Convertir a diccionario debido a que tenemos otra libreria y no
+    #funciona el dictionary
+    columns = [column[0] for column in cur.description]
+    sucursales = [dict(zip(columns, row)) for row in rows]
+    return sucursales
+
+#Obtenemos los Puestos existenes en la BD
+def get_puestos(mysql):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM TPuesto')
+    rows = cur.fetchall()
+
+    # Convertir a diccionario debido a que tenemos otra libreria y no
+    #funciona el dictionary
+    columns = [column[0] for column in cur.description]
+    sucursales = [dict(zip(columns, row)) for row in rows]
+    return sucursales
+
+#Obtenemos los Turnos existenes en la BD
+def get_turnos(mysql):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM TTurnos')
+    rows = cur.fetchall()
+
+    # Convertir a diccionario debido a que tenemos otra libreria y no
+    #funciona el dictionary
+    columns = [column[0] for column in cur.description]
+    sucursales = [dict(zip(columns, row)) for row in rows]
+    return sucursales
+
 #agregamos datos a un empleado (Registro)
 def agregar_empleado(mysql, nombre, rfc, nss, fecha_nacimiento, fecha_ingreso, sucursal_id, colonia_id, contactoemergencia_id):
     cur = mysql.connection.cursor()

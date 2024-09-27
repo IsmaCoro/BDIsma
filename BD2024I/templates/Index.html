@@ -62,6 +62,11 @@
                 <input type="email" id="Correo Electronico" name="Correo" required>
             </div>
             <div class="input-group">
+              <label for="Genero1">Genero1</label>
+              <select id="Genero1" name="genero_Id" required>{% for genero in generos %}
+                <option value="{{ genero.Id }}">{{ genero.Genero }}</option>{% endfor %}</select><br>
+            </div>
+            <div class="input-group">
                 <label for="Genero">Genero</label>
                 <select name="Genero" id="Genero" disabled="disabled">
                     <option value="Femenino">Femenino</option>
@@ -70,12 +75,22 @@
                 </select><br>
             </div>
             <div class="input-group">
+              <label for="Turno1">Turno1</label>
+              <select id="Turno1" name="turno_ID" required>{% for turno in turnos %}
+                <option value="{{ turno.ID }}">{{ turno.Turno }}</option>{% endfor %}</select><br>
+            </div>
+            <div class="input-group">
                 <label for="Tuno">Turno</label>
                 <select name="Tuno" id="Tuno" disabled="disabled">
                     <option value="Matutino">Matutino</option>
                     <option value="Vespertino">Vespertino</option>
                     <option value="Nocturno">Nocturno</option>
                 </select><br>
+            </div>
+            <div class="input-group">
+              <label for="Puesto1">Puesto1</label>
+              <select id="Puesto1" name="puesto_Id" required>{% for puesto in puestos %}
+                <option value="{{ puesto.Id }}">{{ puesto.Puesto }}</option>{% endfor %}</select><br>
             </div>
             <div class="input-group">
                 <label for="Puesto">Puesto</label>

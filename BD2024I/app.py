@@ -3,7 +3,7 @@ from flask import Flask, flash, redirect, render_template, request, url_for, ses
 #agregamos el archivo que tiene la conexion a la base de datos
 from conexionBD import init_db
 #importamos las funciones del archivo models
-from models import get_empleados, get_sucursales, get_colonias, agregar_empleado, eliminar_empleado, modificar_empleado
+from models import get_empleados, get_sucursales, get_colonias, agregar_empleado, eliminar_empleado, modificar_empleado, get_generos, get_puestos, get_turnos
 
 app = Flask(__name__)
 mysql = init_db(app)
@@ -27,10 +27,13 @@ def index():
     modo = session.get('privilegios')
     #modo = privilegios
     #modo = request.form['modo']
-    empleados = get_empleados(mysql)
+    empleadosT = get_empleados(mysql)
     sucursalesT = get_sucursales(mysql)
     coloniasT = get_colonias(mysql)
-    return render_template('Index.html', modo = modo, empleados=empleados, sucursales=sucursalesT, colonias = coloniasT)
+    generosT = get_generos(mysql)
+    puestosT = get_puestos(mysql)
+    turnosT = get_turnos(mysql)
+    return render_template('Index.html', modo = modo, empleados=empleadosT, sucursales=sucursalesT, colonias = coloniasT, generos = generosT, puestos = puestosT, turnos = turnosT)
 
 
 #funcion para el boton que registra a los empleados
